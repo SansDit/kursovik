@@ -1,0 +1,35 @@
+<ng-include src="'views/mainMenu.html'"></ng-include>
+<h2>{{ vm.title }}</h2>
+<form ng-class="(vm.formWasValidated) ? 'was-validated': ''" class="needs-validation" ng-submit="vm.sendForm()" novalidate>
+    <div class="form-row">
+    <div class="col-md-2 mb-4">
+        <label for="date-check">Дата заселения</label>
+        <input ng-model="vm.formModel.dateCheck.value" type="date" class="form-control" id="date-check">
+    </div>
+    <div class="col-md-2 mb-4">
+        <label for="date-eviction">Дата выселения</label>
+        <input ng-model="vm.formModel.dateEviction.value" type="date" class="form-control" id="date-eviction">
+     </div>
+    <div class="col-md-4 mb-3">
+        <label for="typeRoom">Тип комнаты</label>
+        <input ng-class="(vm.formModel.typeRoom.valid) ? '': 'is-invalid'"  ng-model="vm.formModel.typeRoom.value"
+               type="text" class="form-control" id="typeRoom" ng-keyup="vm.validate()">
+        <div ng-class="(vm.formModel.typeRoom.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+            {{vm.formModel.typeRoom.infoText}}
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <label for="services">Услуги</label>
+        <input ng-class="(vm.formModel.services.valid) ? '': 'is-invalid'" ng-model="vm.formModel.services.value"
+               ng-keyup="vm.validate()" type="text" class="form-control" id="services">
+        <div ng-class="(vm.formModel.services.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+            {{vm.formModel.services.infoText}}
+        </div>
+    </div>
+    </div>
+    <button ng-disabled="!vm.formWasValidated" class="btn btn-primary" type="submit">Изменить</button>
+    <a class="btn btn-info" href="/#!/list">Отмена</a>
+</form>
+<div ng-show="vm.error.length" class="alert alert-danger" role="alert">
+    {{vm.error}}
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>{{ vm.title }}</h2>
+    <form ng-class="(vm.formWasValidated) ? 'was-validated': ''" class="needs-validation" ng-submit="vm.sendForm()" novalidate>
+        <div class="form-row">
+            <div class="col-12">
+                <label for="login">Логин</label>
+                <input ng-class="(vm.formModel.login.valid) ? '': 'is-invalid'"  ng-model="vm.formModel.login.value"
+                       type="text" class="form-control" id="login" ng-keyup="vm.validate()">
+                <div ng-class="(vm.formModel.login.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+                    {{vm.formModel.login.infoText}}
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="password">Пароль</label>
+                <input ng-class="(vm.formModel.password.valid) ? '': 'is-invalid'"  ng-model="vm.formModel.password.value"
+                       type="password" class="form-control" id="password" ng-keyup="vm.validate()">
+                <div ng-class="(vm.formModel.password.valid && vm.formWasValidated) ? 'valid-feedback': 'invalid-feedback'">
+                    {{vm.formModel.password.infoText}}
+                </div>
+            </div>
+        </div>
+        <br>
+        <button ng-disabled="!vm.formWasValidated" class="btn btn-primary" type="submit">Войти</button>
+        <div class="d-flex bd-highlight">
+            <div class="p-2 bd-highlight">Еще не заходили на сайт? Нажимайте</div>
+            <div class="p-2 flex-shrink-1 bd-highlight"><a class="nav nav-item" href="/#!/signup"> Зарегистрироваться</a></div>
+        </div>
+        </div>
+    </form>
+    <div ng-show="vm.error.length" class="alert alert-danger" role="alert">
+        {{vm.error}}
+    </div>
+</div>
+    <p class="text-center pt-5 text-muted">© 2020-2021</p>

@@ -1,0 +1,16 @@
+<ng-include src="'views/mainMenu.html'"></ng-include>
+<h1>{{ vm.title }}</h1>
+<form ng-submit="vm.sendForm()" novalidate>
+    <div class="form-row">
+        <div class="col-12" ng-hide="vm.error.length">
+            <h4><p class="text-warning">Вы действительно хотите удалить бронь {{vm.formModel.typeRoom.value}}
+                {{vm.formModel.roomNumber.value}} с
+                датой заселения {{vm.formModel.dateCheck.value}} по {{vm.formModel.dateEviction.value}}</h4>
+        </div>
+    </div>
+    <a class="btn btn-info" href="/#!/list">Отмена</a>
+    <button ng-hide="vm.error.length" class="btn btn-danger" type="submit">Удалить</button>
+</form>
+<div ng-show="vm.error.length" class="alert alert-danger" role="alert">
+    {{vm.error}}
+</div>
